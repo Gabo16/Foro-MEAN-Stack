@@ -1,0 +1,52 @@
+<div class="container">
+
+  <h2>Usuarios</h2>
+  <hr class="mb-5">
+
+
+  <div class="row">
+
+    <div class="col-3 mb-4" *ngFor="let user of users">
+      <a [routerLink]="['/usuario/', user._id]">
+        <div class="card py-5 text-center">
+          <div class="card-body">
+            <div class="card-subtitle mb-2 text-muted">
+
+              <img style="width: 90px; height: 90px; border-radius: 900px; overflow: hidden;"
+                src="{{url + '/users/avatar/' + user.image}}" alt="">
+
+            </div>
+
+            <h5 class="card-title">{{user.name}}</h5>
+            <h5 class="card-title">{{user.surname}}</h5>
+
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <nav *ngIf="total > 1" aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item" [ngClass]="{'disabled': !prevPage}">
+        <a class="page-link" aria-label="Previous" [routerLink]="[ '/temas', prevPage ]">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <li class="page-item" *ngFor="let num of totalPages" [ngClass]="{'active': num == page}">
+        <a class="page-link" [routerLink]="[ '/temas', num ]">{{num}}</a>
+      </li>
+
+      <li class="page-item" [ngClass]="{'disabled': !nextPage}">
+        <a class="page-link" aria-label="Next" [routerLink]="[ '/temas', nextPage ]">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+</div>

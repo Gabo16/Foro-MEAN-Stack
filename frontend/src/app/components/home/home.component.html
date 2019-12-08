@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="jumbotron text-center">
+    <h1 class="display-3"><i class=" fas fa-terminal" style="font-size: .85em"></i>Your
+      Code </h1>
+    <h1 class="display-4">Bienvenido</h1>
+    <h2 class="mb-5">Pregunta, comenta y aprende!</h2>
+  </div>
+
+  <main class="my-5">
+
+    <h3 class="mt-5">Temas nuevos</h3>
+    <div class="row mt-4">
+
+      <div class="col-6 mb-3" *ngFor="let topic of topics">
+        <div class="card">
+          <!-- style="height: 16rem;" -->
+          <div class="card-body">
+            <h5 class="card-title"><a [routerLink]="['/tema/', topic._id]">{{topic.tittle}}</a></h5>
+            <p class="card-subtitle mb-2 text-muted"><img
+                style="width: 30px; height: 30px; border-radius: 900px; overflow: hidden;"
+                src="{{url + '/users/avatar/' + topic.user.image}}" alt="">
+              {{topic.user.name}}</p>
+            <p class="card-text">{{topic.content}}</p>
+            <div class="row justify-content-between">
+              <span href="#" class="card-text text-muted ml-3"><i class="far fa-calendar-alt"></i>
+                {{topic.date | amLocale:'es' | amTimeAgo  }}</span>
+              <a href="#" class="card-link  mr-3" [routerLink]="['/tema/', topic._id]">Leer mas <i
+                  class="fas fa-sort-down"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="row justify-content-end">
+      <a href="#" class="btn btn-sm btn-primary mr-3" [routerLink]="['/temas']">Ver mas temas <i
+          class="fas fa-sort-down"></i></a>
+    </div>
+  </main>
+
+
+</div>

@@ -1,0 +1,47 @@
+<div class="container">
+  <h3 class="mb-4">{{tittle}}</h3>
+
+  <form [formGroup]="topicForm" (ngSubmit)="saveTopic()">
+
+    <div class="row">
+      <div class="form-group col-12 col-md-8">
+        <label>Titulo</label>
+        <input type="text" class="form-control form-control-sm" formControlName="tittle"
+          [ngClass]="{'is-invalid': (topicForm.get('tittle').invalid && topicForm.get('tittle').touched) || (topicForm.get('tittle').invalid && sent)}">
+        <div class="invalid-feedback" *ngIf="topicForm.get('tittle').invalid">
+          <span *ngIf="topicForm.get('tittle').errors?.required">El titulo es requerido</span>
+        </div>
+      </div>
+      <div class="form-group  col-12 col-md-4">
+        <label>Lenguaje</label>
+        <input type="text" class="form-control form-control-sm" formControlName="lang"
+          [ngClass]="{'is-invalid': (topicForm.get('lang').invalid && topicForm.get('lang').touched) || (topicForm.get('lang').invalid && sent)}">
+        <div class="invalid-feedback" *ngIf="topicForm.get('lang').invalid">
+          <span *ngIf="topicForm.get('lang').errors?.required">El lenguaje es requerido</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Contenido</label>
+      <textarea type="text" class="form-control form-control-sm" rows="5" formControlName="content"
+        [ngClass]="{'is-invalid': (topicForm.get('content').invalid && topicForm.get('content').touched) || (topicForm.get('content').invalid && sent)}"></textarea>
+      <div class="invalid-feedback" *ngIf="topicForm.get('content').invalid">
+        <span *ngIf="topicForm.get('content').errors?.required">El contenido es requerido</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Codigo</label>
+      <textarea type="text" class="form-control form-control-sm" rows="10" formControlName="code"
+        [ngClass]="{'is-invalid': (topicForm.get('code').invalid && topicForm.get('code').touched) || (topicForm.get('code').invalid && sent)}"></textarea>
+      <div class="invalid-feedback" *ngIf="topicForm.get('code').invalid">
+        <span *ngIf="topicForm.get('code').errors?.required">El codigo es requerido</span>
+      </div>
+    </div>
+
+    <div class="row justify-content-end">
+      <button type="submit" class="btn btn-sm btn-primary mr-3" [disabled]="topicForm.invalid">Guardar</button>
+    </div>
+
+  </form>
+
+</div>

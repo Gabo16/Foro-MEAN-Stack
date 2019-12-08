@@ -1,0 +1,55 @@
+<div class="container">
+
+  <h2>Temas</h2>
+  <hr class="mb-5">
+
+
+  <div class="row">
+
+    <div class="col-12 mb-4" *ngFor="let topic of topics">
+      <div class="card">
+        <!-- style="height: 16rem;" -->
+        <div class="card-body">
+          <a [routerLink]="['/tema/', topic._id]">
+            <h5 class="card-title">{{topic.tittle}}</h5>
+          </a>
+          <p class="card-subtitle mb-2 text-muted"><img
+              style="width: 30px; height: 30px; border-radius: 900px; overflow: hidden;"
+              src="{{url + '/users/avatar/' + topic.user.image}}" alt="">
+            {{topic.user.name}}</p>
+          <p class="card-text">{{topic.content}}</p>
+          <div class="row justify-content-between">
+            <span href="#" class="card-text text-muted ml-3"><i class="far fa-calendar-alt"></i>
+              {{topic.date | amLocale:'es' | amTimeAgo  }}</span>
+            <a href="#" class="card-link  mr-3" [routerLink]="['/tema/', topic._id]">Leer mas <i
+                class="fas fa-sort-down"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <nav *ngIf="total > 1" aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item" [ngClass]="{'disabled': !prevPage}">
+        <a class="page-link" aria-label="Previous" [routerLink]="[ '/temas', prevPage ]">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <li class="page-item" *ngFor="let num of totalPages" [ngClass]="{'active': num == page}">
+        <a class="page-link" [routerLink]="[ '/temas', num ]">{{num}}</a>
+      </li>
+
+      <li class="page-item" [ngClass]="{'disabled': !nextPage}">
+        <a class="page-link" aria-label="Next" [routerLink]="[ '/temas', nextPage ]">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+</div>

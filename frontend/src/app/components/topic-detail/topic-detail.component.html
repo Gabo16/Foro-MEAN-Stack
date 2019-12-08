@@ -1,0 +1,68 @@
+<div class="container mb-5">
+
+  <h4> {{topic.tittle}} </h4>
+
+  <div class="row ml-4 justify-content-between">
+    <div class="col">
+      <div class="row">
+        <img style="width: 40px; height: 40px; border-radius: 900px; overflow: hidden;" src="{{imgUrl}}" alt="">
+        <p class="ml-2 text-muted">{{user.name}}</p>
+      </div>
+    </div>
+    <div class="col">
+      <span href="#" class="text-muted" style="font-size: .8rem;"><i class="far fa-calendar-alt"></i>
+        {{topic.date | amLocale:'es' | amTimeAgo  }}</span>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col col-lg-9">
+      {{ topic.content }}
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col col-lg-9">
+      <pre>
+        {{ topic.code }}
+      </pre>
+    </div>
+  </div>
+
+
+  <div class="mt-5" id="comment-box">
+    <h5>Comentarios</h5>
+    <hr class="mb-4">
+
+    <div class="row ml-4 mt-4" *ngFor="let comment of topic.comments">
+      <div class="col-1">
+        <div class="row ml-1">
+          <img style="width: 40px; height: 40px; border-radius: 900px; overflow: hidden;"
+            src="{{url + '/users/avatar/' + comment.user.image}}" alt="">
+        </div>
+        <div class="row">
+          <p class="text-muted">{{comment.user.name}}</p>
+        </div>
+      </div>
+      <div class="col-8">
+        <span href="#" class="text-muted" style="font-size: .8rem;"><i class="far fa-calendar-alt"></i>
+          {{comment.date | amLocale:'es' | amTimeAgo  }}</span>
+        <p>{{comment.content}}</p>
+        <button *ngIf="(identity._id == comment.user._id) && identity" class="btn btn-sm btn-outline-danger"
+          (click)="deleteComment(topic._id, comment._id)"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+
+    <form *ngIf="identity" class="row mt-4" [formGroup]="commentForm" (ngSubmit)="saveComment()">
+      <div class=" col col-md-8 form-group">
+        <!-- <input type="text" class="form-control" placeholder="Escribe tu comentario..."> -->
+        <textarea class="form-control" placeholder="Escribe tu comentario..." rows="1"
+          formControlName="comment"></textarea>
+        <div class="row justify-content-end">
+          <button type="submit" class="btn btn-sm btn-outline-secondary mt-2 mr-3"
+            [disabled]="commentForm.invalid">Comentar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container my-4">
+    <h3> {{page_tittle}} </h3>
+    <hr class="mb-5">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-10 col-md-6 col-lg-4">
+
+            <form [formGroup]="userForm" (ngSubmit)="userRegister()" novalidate="">
+
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="name"
+                        [ngClass]="{'is-invalid': userForm.get('name').invalid && userForm.get('name').touched || (err && userForm.get('name').value == '')}">
+                    <div class="invalid-feedback" *ngIf="userForm.get('name').errors?.required">
+                        El nombre es requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('name').errors?.minlength">
+                        El nombre debe tener al menos {{userForm.get('name').errors?.minlength.requiredLength}}
+                        caracteres
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('name').errors?.pattern">
+                        El nombre caracteres invalidos
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="surname"
+                        [ngClass]="{'is-invalid': userForm.get('surname').invalid && userForm.get('surname').touched || (err && userForm.get('surname').value == '')}">
+                    <div class="invalid-feedback" *ngIf="userForm.get('surname').errors?.required">
+                        El apellido es requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('surname').errors?.minlength">
+                        El apellido debe tener al menos
+                        {{userForm.get('surname').errors?.minlength.requiredLength}} caracteres
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('surname').errors?.pattern">
+                        El apellido caracteres invalidos
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="email" class="form-control form-control-sm" formControlName="email"
+                        [ngClass]="{'is-invalid': userForm.get('email').invalid && userForm.get('email').touched || (err && userForm.get('email').value == '')}">
+                    <div class="invalid-feedback" *ngIf="userForm.get('email').errors?.required">
+                        El correo es requerido
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('email').errors?.email">
+                        Dirreccion de correo no valida
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control form-control-sm" formControlName="password"
+                        [ngClass]="{'is-invalid': (userForm.get('password').invalid && userForm.get('password').touched) || (err && userForm.get('password').value == '')}">
+                    <div class="invalid-feedback" *ngIf="userForm.get('password').errors?.required">
+                        La Contraseña es requerida
+                    </div>
+                    <div class="invalid-feedback" *ngIf="userForm.get('password').errors?.minlength">
+                        La Contraseña debe tener al menos
+                        {{userForm.get('password').errors?.minlength.requiredLength}}
+                        caracteres
+                    </div>
+                </div>
+
+                <!-- <div class="row justify-content-end mt-4">
+                            <button type="submit" class="btn btn-sm btn-primary mr-3"
+                                [disabled]="userForm.invalid">Registrar</button>
+                        </div> -->
+                <div class="row justify-content-end mt-4">
+                    <button type="submit" class="btn btn-sm btn-primary mr-3">Registrar</button>
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>

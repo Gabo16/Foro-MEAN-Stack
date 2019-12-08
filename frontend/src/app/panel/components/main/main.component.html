@@ -1,0 +1,20 @@
+<div class="container">
+  <h2>
+    Mi panel
+  </h2>
+  <hr>
+
+  <div class="row my-4">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills">
+        <a class="nav-link" [routerLink]="['/panel/listado']" routerLinkActive="active">Mis temas</a>
+        <a class="nav-link" [routerLink]="['/panel/crear']" routerLinkActive="active">Crear tema</a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

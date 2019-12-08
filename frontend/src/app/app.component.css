@@ -1,0 +1,6 @@
+.avatar-mask {
+    width: 30px;
+    height: 30px;
+    border-radius: 900px;
+    overflow: hidden;
+}
